@@ -3,7 +3,7 @@
 public class PokemonCreationDto
 {
     public string Nome { get; set; }
-    public int Level { get; set; }
+    public int Nivel { get; set; }
     public string Tipo { get; set; }
     public bool IsDesmaiado { get; set; }
     public int PontosDeVida { get; set; }

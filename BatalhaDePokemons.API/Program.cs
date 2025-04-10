@@ -43,6 +43,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<AtaqueCreationDtoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<PokemonCreationDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<ExperienciaDtoValidator>();
 
 
 builder.Services.AddEndpointsApiExplorer();

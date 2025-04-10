@@ -39,4 +39,7 @@ public static class ExceptionMessages
 
     public static string PokemonNaoParticipaDaBatalha =>
         "O pokemon não está participando da batalha";
+
+    public static string PokemonNoNivelMaximo(string nome) =>
+        $"O pokemon {nome} já está no nível máximo";
 }

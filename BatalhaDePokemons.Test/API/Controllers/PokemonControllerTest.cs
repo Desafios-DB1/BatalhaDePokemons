@@ -264,4 +264,48 @@ public class PokemonControllerTest
     }
 
     #endregion
+
+    #region AdicionarExperiencia
+
+    [Fact]
+    public async Task AdicionarExperiencia_QuandoValido_DeveRetornar200Ok()
+    {
+        var pokemon = PokemonBuilder.Novo().Build();
+        var experienciaDto = new ExperienciaDto
+        {
+            ExperienciaGanha = 10,
+        };
+        
+        _pokemonServiceMock.Setup(s => 
+                s.AdicionarExperienciaAsync(It.IsAny<Guid>(), It.IsAny<ExperienciaDto>()))
+                .ReturnsAsync(PokemonMapper.MapToResponseDto(pokemon));
+
+        var result = await _pokemonController.AdicionarExperiencia(pokemon.PokemonId, experienciaDto);
+        
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Equal(200, okResult.StatusCode);
+        var returnedPokemon = Assert.IsType<PokemonResponseDto>(okResult.Value);
+        Assert.Equal(pokemon.Nivel, returnedPokemon.Nivel);
+    }
+
+    [Fact]
+    public async Task AdicionarExperiencia_QuandoPokemonInvalido_DeveRetornar404NotFound()
+    {
+        var pokemon = PokemonBuilder.Novo().Build();
+        var experienciaDto = new ExperienciaDto
+        {
+            ExperienciaGanha = 10
+        };
+        
+        _pokemonServiceMock.Setup(s=>
+            s.AdicionarExperienciaAsync(It.IsAny<Guid>(), It.IsAny<ExperienciaDto>()))
+            .ThrowsAsync(new NotFoundException("Pokemon não encontrado"));
+        
+        var exception = await Assert.ThrowsAsync<NotFoundException>(()=>
+            _pokemonController.AdicionarExperiencia(pokemon.PokemonId, experienciaDto));
+        
+        Assert.Equal("Pokemon não encontrado", exception.Message);
+    }
+
+    #endregion
 }

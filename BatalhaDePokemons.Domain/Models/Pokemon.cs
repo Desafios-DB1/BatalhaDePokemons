@@ -21,6 +21,8 @@ public class Pokemon
     public Guid PokemonId { get; init; } = Guid.NewGuid();
     public string Nome { get; set; }
     public int Nivel { get; set; }
+    public int Experiencia { get; set; }
+    public static int ExperienciaParaProximoNivel => 100;
     public bool IsDesmaiado { get; set; }
     public Tipo Tipo { get; set; }
     public StatusDeCombate Status { get; init; }
@@ -54,6 +56,21 @@ public class Pokemon
     {
         Status.PontosDeVida = newHp;
         IsDesmaiado = false;
+    }
+
+    public void GanharExperiencia(int experienciaGanha)
+    {
+        Experiencia += experienciaGanha;
+        
+        if (Nivel >= 100)
+            throw new NivelMaximoException(ExceptionMessages.PokemonNoNivelMaximo(Nome));
+        
+        while (Experiencia >= ExperienciaParaProximoNivel &&
+               Nivel < 100)
+        {
+            Experiencia -= ExperienciaParaProximoNivel;
+            Nivel++;
+        }
     }
 }
 

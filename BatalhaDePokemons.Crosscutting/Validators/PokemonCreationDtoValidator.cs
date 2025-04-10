@@ -13,7 +13,7 @@ public class PokemonCreationDtoValidator : AbstractValidator<PokemonCreationDto>
             .NotEmpty().WithMessage(ValidationErrors.CampoObrigatorio)
             .MaximumLength(Caracteres.Duzentos).WithMessage(ValidationErrors.TamanhoMaximo(Caracteres.Duzentos));
 
-        RuleFor(x => x.Level)
+        RuleFor(x => x.Nivel)
             .GreaterThan(Caracteres.Zero).WithMessage(ValidationErrors.ValorMinimo(Caracteres.Zero))
             .LessThan(Caracteres.Cem).WithMessage(ValidationErrors.ValorMaximo(Caracteres.Cem));
 

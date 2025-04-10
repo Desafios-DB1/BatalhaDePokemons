@@ -132,6 +132,25 @@ public class PokemonController(IPokemonService service) : ControllerBase
     }
     
     /// <summary>
+    /// Adiciona experiencia para um pokemon
+    /// </summary>
+    /// <param name="pokemonId">Guid do pokemon</param>
+    /// <param name="experienciaGanha">Quantidade de xp que será adicionada ao pokemon</param>
+    /// <response code="200">Experiencia adicionada com sucesso</response>
+    /// <response code="404">Pokemon não encontrado</response>
+    /// <response code="400">Erro ao adicionar experiencia</response>
+    [AllowAnonymous]
+    [ProducesResponseType<PokemonResponseDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType<ErrorResponse>(StatusCodes.Status404NotFound)]
+    [ProducesResponseType<ErrorResponse>(StatusCodes.Status400BadRequest)]
+    [HttpPatch("{pokemonId:guid}/adicionarExperiencia")]
+    public async Task<IActionResult> AdicionarExperiencia(Guid pokemonId, ExperienciaDto experienciaGanha)
+    {
+        var pokemon = await service.AdicionarExperienciaAsync(pokemonId, experienciaGanha);
+        return Ok(pokemon);
+    }
+    
+    /// <summary>
     /// Vincula um ataque a um pokemon
     /// </summary>
     /// <param name="pokemonId">Guid do pokemon</param>

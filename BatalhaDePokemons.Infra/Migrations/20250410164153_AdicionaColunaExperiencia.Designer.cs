@@ -4,6 +4,7 @@ using BatalhaDePokemons.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BatalhaDePokemons.Infra.Migrations
 {
     [DbContext(typeof(PokemonsDbContext))]
-    partial class PokemonsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250410164153_AdicionaColunaExperiencia")]
+    partial class AdicionaColunaExperiencia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

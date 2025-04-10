@@ -12,7 +12,7 @@ public static class PokemonMapper
         {
             PokemonId = pokemon.PokemonId,
             Nome = pokemon.Nome,
-            Level = pokemon.Nivel,
+            Nivel = pokemon.Nivel,
             Hp = pokemon.Status.PontosDeVida,
             Ataques = pokemon.Ataques?.Select(pa => new AtaqueResponseDto
             {
@@ -29,7 +29,7 @@ public static class PokemonMapper
         return new PokemonCreationDto
         {
             Nome = pokemon.Nome,
-            Level = pokemon.Nivel,
+            Nivel = pokemon.Nivel,
             IsDesmaiado = pokemon.IsDesmaiado,
             PontosDeVida = pokemon.Status.PontosDeVida,
             Ataque = pokemon.Status.Ataque,

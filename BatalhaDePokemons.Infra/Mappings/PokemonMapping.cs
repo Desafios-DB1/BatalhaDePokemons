@@ -38,6 +38,10 @@ public class PokemonMapping : IEntityTypeConfiguration<Pokemon>
                 v => v.ToString(),
                 v => Enum.Parse<Tipo>(v))
             .IsRequired();
+
+        builder.Property(p => p.Experiencia)
+            .HasColumnName(nameof(Pokemon.Experiencia))
+            .HasDefaultValue(0);
         
         builder.OwnsOne(p => p.Status, status =>
         {
