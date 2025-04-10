@@ -42,19 +42,19 @@ public class PokemonMapping : IEntityTypeConfiguration<Pokemon>
         builder.OwnsOne(p => p.Status, status =>
         {
             status.Property(s => s.PontosDeVida)
-                .HasColumnName("Hp")
+                .HasColumnName("PontosDeVida")
                 .IsRequired();
             
             status.Property(s=>s.Velocidade)
-                .HasColumnName("Spd")
+                .HasColumnName("Velocidade")
                 .IsRequired();
             
             status.Property(s=>s.Defesa)
-                .HasColumnName("Def")
+                .HasColumnName("Defesa")
                 .IsRequired();
             
             status.Property(s => s.Ataque)
-                .HasColumnName("Atk")
+                .HasColumnName("Ataque")
                 .IsRequired();
         });
 

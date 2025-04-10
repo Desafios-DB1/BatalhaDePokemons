@@ -80,7 +80,7 @@ namespace BatalhaDePokemons.Infra.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Pokemon2Id");
 
-                    b.Property<Guid>("ProximoTurnoDoPokemonId")
+                    b.Property<Guid?>("ProximoTurnoDoPokemonId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ProximoTurnoDoPokemonId");
 
@@ -109,11 +109,11 @@ namespace BatalhaDePokemons.Infra.Migrations
                         .HasDefaultValue(false)
                         .HasColumnName("IsDesmaiado");
 
-                    b.Property<int>("Level")
+                    b.Property<int>("Nivel")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(1)
-                        .HasColumnName("Level");
+                        .HasColumnName("Nivel");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -196,21 +196,21 @@ namespace BatalhaDePokemons.Infra.Migrations
                             b1.Property<Guid>("PokemonId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<int>("Atk")
+                            b1.Property<int>("Ataque")
                                 .HasColumnType("int")
-                                .HasColumnName("Atk");
+                                .HasColumnName("Ataque");
 
-                            b1.Property<int>("Def")
+                            b1.Property<int>("Defesa")
                                 .HasColumnType("int")
-                                .HasColumnName("Def");
+                                .HasColumnName("Defesa");
 
-                            b1.Property<int>("Hp")
+                            b1.Property<int>("PontosDeVida")
                                 .HasColumnType("int")
-                                .HasColumnName("Hp");
+                                .HasColumnName("PontosDeVida");
 
-                            b1.Property<int>("Spd")
+                            b1.Property<int>("Velocidade")
                                 .HasColumnType("int")
-                                .HasColumnName("Spd");
+                                .HasColumnName("Velocidade");
 
                             b1.HasKey("PokemonId");
 
