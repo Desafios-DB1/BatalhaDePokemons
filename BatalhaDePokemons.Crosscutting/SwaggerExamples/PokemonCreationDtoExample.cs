@@ -11,7 +11,7 @@ public class PokemonCreationDtoExample : IExamplesProvider<PokemonCreationDto>
         return new PokemonCreationDto
         {
             Nome = "Charmander",
-            Level = 30,
+            Nivel = 30,
             Tipo = Tipo.Fogo.ToString(),
             IsDesmaiado = false,
             PontosDeVida = 40,

@@ -12,4 +12,5 @@ public interface IPokemonService
     Task VincularAtaqueAsync(Guid pokemonId, Guid ataqueId);
     Task<List<AtaqueResponseDto>> ObterAtaquesPorPokemonIdAsync(Guid pokemonId);
     Task<PokemonResponseDto> CurarPokemonAsync(Guid pokemonId, int newHp);
+    Task<PokemonResponseDto> AdicionarExperienciaAsync(Guid pokemonId, ExperienciaDto dto);
 }

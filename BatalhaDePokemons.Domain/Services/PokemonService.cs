@@ -18,7 +18,7 @@ public class PokemonService(IPokemonRepository repository, IAtaqueRepository ata
             throw new ArgumentException(ExceptionMessages.TipoInvalido(pokemon.Tipo));
         
         var novoPokemon = new Pokemon(
-            pokemon.Nome, pokemon.Level, tipoConvertido, pokemon.PontosDeVida, pokemon.Velocidade, pokemon.Defesa, pokemon.Ataque);
+            pokemon.Nome, pokemon.Nivel, tipoConvertido, pokemon.PontosDeVida, pokemon.Velocidade, pokemon.Defesa, pokemon.Ataque);
         var novoPokemonId = await repository.AdicionarESalvarAsync(novoPokemon);
         return novoPokemonId;
     }
@@ -49,7 +49,7 @@ public class PokemonService(IPokemonRepository repository, IAtaqueRepository ata
         var pokemonAntigo = await ValidarPokemon(pokemonId);
         
         pokemonAntigo.Nome = pokemon.Nome;
-        pokemonAntigo.Nivel = pokemon.Level;
+        pokemonAntigo.Nivel = pokemon.Nivel;
         pokemonAntigo.Tipo = tipoConvertido;
         pokemonAntigo.IsDesmaiado = pokemon.IsDesmaiado;
         pokemonAntigo.Status.PontosDeVida = pokemon.PontosDeVida;
@@ -100,6 +100,15 @@ public class PokemonService(IPokemonRepository repository, IAtaqueRepository ata
         await repository.AtualizarESalvarAsync(pokemon);
         return PokemonMapper.MapToResponseDto(pokemon);
     }
+
+    public async Task<PokemonResponseDto> AdicionarExperienciaAsync(Guid pokemonId, ExperienciaDto dto)
+    {
+        var pokemon = await ValidarPokemon(pokemonId);
+        pokemon.GanharExperiencia(dto.ExperienciaGanha);
+        var updatedPokemon = await repository.AtualizarESalvarAsync(pokemon);
+        return PokemonMapper.MapToResponseDto(updatedPokemon);
+    }
+    
     private async Task<Pokemon> ValidarPokemon(Guid id)
     {
         var pokemon = await repository.ObterPorIdComAtaquesAsync(id)
