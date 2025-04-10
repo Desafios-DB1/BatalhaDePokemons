@@ -60,11 +60,11 @@ public class Pokemon
 
     public void GanharExperiencia(int experienciaGanha)
     {
+        Experiencia += experienciaGanha;
+        
         if (Nivel >= 100)
             throw new NivelMaximoException(ExceptionMessages.PokemonNoNivelMaximo(Nome));
         
-        Experiencia += experienciaGanha;
-
         while (Experiencia >= ExperienciaParaProximoNivel &&
                Nivel < 100)
         {
