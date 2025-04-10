@@ -53,6 +53,7 @@ public class Pokemon
     public void Curar(int newHp)
     {
         Status.PontosDeVida = newHp;
+        IsDesmaiado = false;
     }
 }
 
